@@ -22,27 +22,27 @@ function onSearch(element) {
     };
 
     fetchCountries(search.trim())
-    .then(countries => {
+        .then(countries => {
         
-        if (countries.length > 10) {
-            Notify.info('Too many matches found. Please enter a more specific name.');
-            countryList.innerHTML = "";
-            countryInfo.innerHTML = "";
-            return;
-        }
+            if (countries.length > 10) {
+                Notify.info('Too many matches found. Please enter a more specific name.');
+                countryList.innerHTML = "";
+                countryInfo.innerHTML = "";
+                return;
+            }
 
-        if (countries.length > 1 && countries.length <= 10) {
-            const markup = countries.map(country => countryName(country))
-            countryList.innerHTML = markup.join('');
-            countryInfo.innerHTML = "";
-        }
+            if (countries.length > 1 && countries.length <= 10) {
+                const markup = countries.map(country => countryName(country));
+                countryList.innerHTML = markup.join('');
+                countryInfo.innerHTML = "";
+            }
 
-        if (countries.length === 1) {
-            const cardMarcup = countries.map(country => countryCard(country));
-            countryList.innerHTML = "";
-            countryInfo.innerHTML = cardMarcup.join('');
-        }
-    })
+            if (countries.length === 1) {
+                const cardMarcup = countries.map(country => countryCard(country));
+                countryList.innerHTML = "";
+                countryInfo.innerHTML = cardMarcup.join('');
+            }
+        })
     
     .catch(error => {
         Notify.failure('Oops, there is no country with that name');
@@ -59,7 +59,8 @@ function countryName({ flags, name }){
     <h2 class = country-list__name>${name.official}</h2>
     </li>
     `
-}
+};
+
 
 function countryCard({ flags, name, capital, population, languages }) {
     return `
